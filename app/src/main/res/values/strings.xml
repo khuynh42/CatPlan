@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">CatPlan</string>
+
+    <!-- Strings related to login -->
+    <string name="fname">Name</string>
+    <string name="lname">Last Name</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password </string>
+    <string name="repassword">Re-Enter Password </string>
+    <string name="sign_in">Sign in </string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_username">This Username is invalid</string>
+    <string name="error_invalid_password">This Password is invalid</string>
+    <string name="register">Register</string>
+    <string name="noneed"> Already registered! Sign in.</string>
+
+
+    <string name="catalog">Catalog</string>
+    <string name="scheduler">Scheduler</string>
+    <string name="favorites">Favorites</string>
+    <string name="logout">logout</string>
+
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="textview">TextView</string>
+    <string name="button">Button</string>
+
+    <string name="action_discard_reminder">Discard Reminder</string>
+    <string name="action_save_reminder">Save Reminder</string>
+    <string name="validation_name">Invalid Name</string>
+    <string name="validation_valid_email">Enter Correct email</string>
+    <string name="validation_participants">Invalid Participants</string>
+    <string name="login_valid">Invalid Login</string>
+    <string name="pass_valid">Invalid Password</string>
+    <string name="copy_right">CatPlan 2017</string>
+
+
+    <string name="courseName">Select Course</string>
+    <string name="courseNum">Select Course Number</string>
+    <string name="next">NEXT</string>
+
+    <string-array name="acc_type">
+        <item>CSE</item>
+        <item>ENGR</item>
+        <item>MATH</item>
+    </string-array>
+
+</resources>

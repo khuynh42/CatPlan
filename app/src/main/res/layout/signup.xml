@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="Deprecated" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="9dp"
+        android:layout_y="10dp"
+        android:text="Registration"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        tools:ignore="HardcodedText,ObsoleteLayoutParam"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/Spassword"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_x="11dp"
+        android:layout_y="313dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        tools:ignore="LabelFor,ObsoleteLayoutParam"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/username"
+        android:layout_alignEnd="@+id/Sname">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/conpass"
+        android:layout_width="292dp"
+        android:layout_height="wrap_content"
+        android:layout_x="13dp"
+        android:layout_y="382dp"
+        android:ems="10"
+        android:hint="@string/repassword"
+        android:inputType="textPassword"
+        tools:ignore="LabelFor,ObsoleteLayoutParam"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/Spassword"
+        android:layout_alignEnd="@+id/username" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="295dp"
+        android:layout_height="53dp"
+        android:layout_x="12dp"
+        android:layout_y="220dp"
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="textPersonName"
+        tools:ignore="LabelFor,ObsoleteLayoutParam"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/email"
+        android:layout_alignEnd="@+id/email" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="294dp"
+        android:layout_height="wrap_content"
+        android:layout_x="13dp"
+        android:layout_y="164dp"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textPersonName"
+        tools:ignore="LabelFor,ObsoleteLayoutParam,TextFields"
+        android:layout_below="@+id/Sname"
+        android:layout_alignStart="@+id/Sname"
+        android:layout_marginTop="21dp" />
+
+    <EditText
+        android:id="@+id/Sname"
+        android:layout_width="291dp"
+        android:layout_height="wrap_content"
+        android:layout_x="16dp"
+        android:layout_y="97dp"
+        android:ems="10"
+        android:hint="@string/fname"
+        android:inputType="textPersonName"
+        tools:ignore="LabelFor,ObsoleteLayoutParam"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="107dp"
+        android:layout_height="wrap_content"
+        android:layout_x="102dp"
+        android:layout_y="457dp"
+        android:text="@string/register"
+        tools:ignore="HardcodedText,ObsoleteLayoutParam"
+        android:layout_below="@+id/conpass"
+        android:layout_alignEnd="@+id/textView1"
+        android:layout_marginTop="50dp" />
+
+</RelativeLayout>
