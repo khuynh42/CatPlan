@@ -28,7 +28,7 @@ import java.io.Serializable;
 public class AddCourseNum extends AppCompatActivity
 {
     public static List<Courses> courseNames = new ArrayList<Courses>();
-    public static List<Courses> courseSelected = new ArrayList<Courses>();
+    public static ArrayList<Courses> courseSelected = new ArrayList<Courses>();
     private Activity activity = this;
     private AddAdapter ad;
     SQLiteHandler db;
@@ -43,7 +43,7 @@ public class AddCourseNum extends AppCompatActivity
         db = new SQLiteHandler(this);
 
         course_name  = getIntent().getStringExtra("course_name");
-        db.setCourse(course_name);
+        db.setCourseName(course_name);
 
         //CourseNames to get List of Course Numbers from handler
         courseNames = db.getListNum();
@@ -79,14 +79,6 @@ public class AddCourseNum extends AppCompatActivity
                 ad.check.set(position, cb.isChecked());
                 String courseNum = parent.getItemAtPosition(position).toString();
 
-
-                if(ad.check.get(position) == true)
-                {
-                 course_num = courseNum;
-                }
-
-                Toast.makeText(parent.getContext(), "You selected: " + course_num,
-                        Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -105,9 +97,13 @@ public class AddCourseNum extends AppCompatActivity
         for (int i=0; i<courseNames.size(); i++) {
             if (ad.check.get(i))
                 courseSelected.add(courseNames.get(i));
+          Log.d("SELECTION CHECKBOX", "You Selected: " + courseNames.get(i) );
         }
         Intent data = new Intent(AddCourseNum.this, AddCourseLab.class);
-        data.putExtra("COURSE_SELECTED", course_num);
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("COURSE_SELECTED", courseSelected);
+        data.putExtras(bundle);
+
         setResult(RESULT_OK, data);
         startActivity(data);
         finish();

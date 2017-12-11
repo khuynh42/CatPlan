@@ -28,7 +28,8 @@
         <activity android:name=".AddCourses"></activity>
         <activity android:name=".AddCourseNum"></activity>
         <activity android:name=".AddCourseLab"></activity>
-
+        <activity android:name=".ScheduleChoice"></activity>
+        <activity android:name=".Scheduler"></activity>
 
         <activity android:name=".Catalog"></activity>
 

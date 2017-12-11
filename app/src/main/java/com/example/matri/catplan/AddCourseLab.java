@@ -3,6 +3,7 @@ package com.example.matri.catplan;
 /**
  * Created by matri on 12/8/2017.
  */
+import android.util.Log;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +25,7 @@ import java.util.List;
 public class AddCourseLab extends AppCompatActivity {
 
     public static List<Courses> courseLab = new ArrayList<Courses>();
-    public static List<Courses> courseSelected = new ArrayList<Courses>();
+    public static ArrayList<Courses> courseSelected = new ArrayList<Courses>();
     private Activity activity = this;
     private AddLabAdapter ad;
     SQLiteHandler db;
@@ -35,17 +36,23 @@ public class AddCourseLab extends AppCompatActivity {
         setContentView(R.layout.activity_display_lab);
 
         db = new SQLiteHandler(this);
-
-      //  ArrayList<Courses> course = new ArrayList<>();
-              //course= (ArrayList<Courses> )getIntent().getSerializableExtra("COURSE_SELECTED");
-
-        //Coursename to call SQLITEHANDLER function to get list of Labs
-        courseLab = db.getListLab();
-
-        ad = new AddLabAdapter(this, courseLab);
+        //courseLab.clear();
+        Bundle bundle = getIntent().getExtras();
+        ArrayList<Courses> courseNum = bundle.getParcelableArrayList("COURSE_SELECTED");
         ListView listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(ad);
+        ArrayList<Courses> temp = new ArrayList<Courses>();
 
+        Log.d("COURSENUM", "SIZE: " + courseNum.size());
+        //increment through number of choices
+       for(int i = 0; i < courseNum.size(); i++)
+        {
+            //Hold the array list with the values query provies
+           courseLab.add(courseNum.get(i));
+
+            Log.d("courseLab", "CHECK: " + courseNum.get(i).getCourseName());
+        }
+        ad = new AddLabAdapter(this, courseLab);
+        listView.setAdapter(ad);
 
         Button cancelButton = (Button) findViewById(R.id.btnCancel);
         cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +60,7 @@ public class AddCourseLab extends AppCompatActivity {
             public void onClick(View view) { closeSelector(); }
         });
 
-        Button next = (Button) findViewById(R.id.btnNext);
+        Button next = (Button) findViewById(R.id.btnNext2);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { returnSelected(); }
@@ -81,14 +88,20 @@ public class AddCourseLab extends AppCompatActivity {
     }
 
     private void returnSelected() {
-        courseSelected.clear();
+        //courseSelected.clear();
         for (int i=0; i<courseLab.size(); i++) {
             if (ad.check.get(i))
                 courseSelected.add(courseLab.get(i));
         }
-        Intent data = new Intent();
-        data.putExtra("USERS_SELECTED", courseSelected.size());
+        Intent data = new Intent(AddCourseLab.this, ScheduleChoice.class);
+        Log.d("INTENT", "WORKS TO SCHEDULER CHOICE " );
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("COURSE_SELECTED", courseSelected);
+        data.putExtras(bundle);
+
         setResult(RESULT_OK, data);
+        startActivity(data);
         finish();
     }
 }

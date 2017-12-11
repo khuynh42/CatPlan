@@ -81,7 +81,7 @@ public class AddCourses extends Activity implements
                 Toast.LENGTH_LONG).show();
         SQLiteHandler helper = new SQLiteHandler(this);
 
-        helper.setCourse(courseName);
+        helper.setCourseName(courseName);
 
         course_name = courseName;
         Log.d(TAG," Course being selected from Spinner: " + course_name);

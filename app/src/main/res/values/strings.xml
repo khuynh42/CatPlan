@@ -42,6 +42,7 @@
     <string name="courseName">Select Course</string>
     <string name="courseNum">Select Course Number</string>
     <string name="next">NEXT</string>
+    <string name="generate_schedule">Generate Schedule</string>
 
     <string-array name="acc_type">
         <item>CSE</item>

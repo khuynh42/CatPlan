@@ -3,6 +3,7 @@ package com.example.matri.catplan;
 /**
  * Created by matri on 12/4/2017.
  */
+
 import android.util.Log;
 import android.content.ContentValues;
 import android.content.Context;
@@ -69,6 +70,20 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                     "(c_name, c_num, c_day1, c_day2, c_start, c_end, c_lab_num, c_lab_day, c_lab_start, c_lab_end)" +
                     " VALUES (" + "\"ENGR\"," + "\" 165\","+ "\"M\"," + "\"W\"," + " 1030, 1145, 02," + "\"W\"," + " 1330, 1630);";
 
+    private static final String TABLE_SCHEDULE ="schedule";
+    private static final String TABLE_CREATE_SCHEDULE =
+            "create table if not exists schedule " +
+                    "(c_name text not null, "  +
+                    "c_num integer, " +
+                    "c_day1 text not null, " +
+                    "c_day2 text not null, " +
+                    "c_start integer, "+
+                    "c_end integer, " +
+                    "c_lab_num integer, " +
+                    "c_lab_day text not null, " +
+                    "c_lab_start integer, " +
+                    "c_lab_end integer);";
+
     public SQLiteHandler(Context context) {
         super(context, DATABASE_NAME,null,DATABASE_VERSION);
     }
@@ -79,9 +94,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLE_CREATE);
         db.execSQL(TABLE_CREATE_COURSE);
+        db.execSQL(TABLE_CREATE_SCHEDULE);
 
-//        db.execSQL(POPULATE_DB2);
-//        db.execSQL(POPULATE_DB);
     }
 
     @Override
@@ -154,8 +168,41 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     public List<String> getAllNames(){
         List<String> names = new ArrayList<String>();
-         // Courses ENGR = new Courses("CSE", 100, "M", "W", 1030, 1145, 2, "W", 1330, 1630);
-          //insertName(ENGR);
+/*
+        Courses ENGR = new Courses("CSE", 100, "M", "W", 1030, 1145, 2, "W", 1330, 1630);
+        Courses CSE005 = new Courses("CSE", 5, "M", "W", 1430, 1545, 2, "R", 800, 1100);
+        insertName(CSE005);
+        Courses CSE015 = new Courses("CSE", 5, "M", "W", 1500, 1615, 2, "M", 730, 1020);
+        insertName(CSE015);
+        Courses CSE152 = new Courses("CSE", 5, "M", "W", 1500, 1615, 3, "M", 1030, 1320);
+        insertName(CSE152);
+        Courses CSE020 = new Courses("CSE", 20, "M", "M", 1530, 1620, 2, "F", 1030, 1320);
+        insertName(CSE020);
+        Courses CSE021 = new Courses("CSE", 21, "M", "M", 1530, 1620, 2, "T", 1330, 1620);
+        insertName(CSE021);
+        Courses CSE030 = new Courses("CSE", 30, "M", "W", 1330, 1445, 2, "F", 730, 1020);
+        insertName(CSE030);
+        Courses CSE031 = new Courses("CSE", 31, "M", "W", 1330, 1445, 2, "R", 730, 1020);
+        insertName(CSE031);
+        Courses CSE100 = new Courses("CSE", 100, "T", "R", 1630, 1745, 2, "M", 1330, 1620);
+        insertName(CSE100);
+        Courses CSE120 = new Courses("CSE", 120, "W", "F", 1200, 1315, 2, "M", 730, 1020);
+        insertName(CSE120);
+        Courses CSE140 = new Courses("CSE", 140, "M", "W", 1030, 1145, 2, "W", 1330, 1620);
+        insertName(CSE140);
+        Courses CSE150 = new Courses("CSE", 150, "M", "W", 700, 815, 2, "W", 1330, 1620);
+        insertName(CSE150);
+        Courses CSE165 = new Courses("CSE", 165, "T", "R", 900, 1015, 2, "F", 730, 1020);
+        insertName(CSE165);
+        Courses CSE1652 = new Courses("CSE", 165, "T", "R", 900, 1015, 3, "F", 1330, 1620);
+        insertName(CSE1652);
+        Courses CSE170 = new Courses("CSE", 170, "M", "W", 900, 1015, 2, "F", 730, 1020);
+        insertName(CSE170);
+        Courses CSE173 = new Courses("CSE", 173, "T", "R", 1500, 1615, 2, "R", 1630, 1915);
+        insertName(CSE173);
+        Courses CSE180 = new Courses("CSE", 180, "T", "R", 1500, 1615, 2, "R", 1930, 2220);
+        insertName(CSE180);
+*/
         // Select AllQuery
         String selectQuery = "SELECT  DISTINCT c_name " +
                 "FROM " + TABLE_COURSE;
@@ -182,28 +229,29 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     }
 
 
-    private String c_name;
-    public String setCourse(String course_name)
-    {
-        this.c_name = course_name;
-        return course_name;
-    }
-    private int c_num;
-    public int setCourseNum(int c_num)
-    {
-        this.c_num = c_num;
-        return c_num;
-    }
+    private String courseName;
+    private int courseNum;
+    private int courseLab;
+
+
+
+public String setCourseName (String courseName)
+{
+    this.courseName = courseName;
+    return courseName;
+}
+
+
     public ArrayList<Courses> getListNum(){
         ArrayList<Courses> theList = new ArrayList<>();
 
         SQLiteDatabase db = this.getWritableDatabase();
         String numQuery = "SELECT DISTINCT * " +
                             " FROM " + TABLE_COURSE+
-                            " WHERE c_name = " + "\"" + c_name + "\" "+
+                            " WHERE c_name = " + "\"" + courseName + "\" "+
                             "ORDER BY c_num;";
 
-        Log.d("DB GET LIST NUM", "Iterating to " + c_name);
+        Log.d("DB GET LIST NUM", "Iterating to " + courseName);
 
         Cursor data = db.rawQuery(numQuery,null);
         while(data.moveToNext()){
@@ -219,8 +267,6 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                     , data.getInt(data.getColumnIndex(COURSE_LAB_START))
                     , data.getInt(data.getColumnIndex(COURSE_LAB_END))));
         }
-        c_num =  data.getInt(data.getColumnIndex(COURSE_NUM));
-
         data.close();
         db.close();
         return theList;
@@ -228,16 +274,41 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
 
 
-    public ArrayList<Courses> getListLab(){
+
+    public ArrayList<Courses> insertSchedule(ArrayList<Courses> course)
+    {
+
+
+        db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        Log.d("INSERT SCHEDULE SIZE", "VALUES: " + course.size());
+        for (int i =0; i < course.size(); i++)
+        {
+            values.put(COURSE_NAME, course.get(i).getCourseName());
+            values.put(COURSE_NUM, course.get(i).getCourseNum());
+            values.put(COURSE_DAY1, course.get(i).getDay1());
+            values.put(COURSE_DAY2, course.get(i).getDay2());
+            values.put(COURSE_START, course.get(i).getStartTime());
+            values.put(COURSE_END, course.get(i).getEndTime());
+            values.put(COURSE_LAB_NUM, course.get(i).getLabNum());
+            values.put(COURSE_LAB_DAY, course.get(i).getLabDay());
+            values.put(COURSE_LAB_START, course.get(i).getLabStart());
+            values.put(COURSE_LAB_END, course.get(i).getLabEnd());
+            db.insert("schedule", null, values);
+            Log.d("INSERT SCHEDULE", "VALUES: " + course.get(i).getCourseName() + course.get(i).getCourseNum() + course.get(i).getDay1());
+        }
+
+
+        db.close();
+        return course;
+    }
+
+    public ArrayList<Courses> getSchedule(){
         ArrayList<Courses> theList = new ArrayList<>();
 
         SQLiteDatabase db = this.getWritableDatabase();
         String numQuery = "SELECT DISTINCT * " +
-                " FROM " + TABLE_COURSE +
-                " WHERE c_name = " + "\"" + c_name + "\"  and  " +
-                        " c_num = " +"\"" + c_num + "\"  and  " +
-                " ORDER BY c_num;";
-
+                " FROM " + TABLE_SCHEDULE ;
 
         Cursor data = db.rawQuery(numQuery,null);
         while(data.moveToNext()){
@@ -258,4 +329,5 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
         return theList;
     }
+
 }

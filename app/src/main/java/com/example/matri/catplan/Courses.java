@@ -1,11 +1,25 @@
 package com.example.matri.catplan;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by matri on 12/6/2017.
  */
 
-public class Courses{
+public class Courses implements Parcelable{
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public Courses createFromParcel(Parcel in) {
+            return new Courses(in);
+        }
+
+        public Courses[] newArray(int size) {
+            return new Courses[size];
+        }
+    };
+
 
     private int id;
     private String courseName;
@@ -18,6 +32,7 @@ public class Courses{
     private String labDay;
     private int labStart;
     private int labEnd;
+
 
 
 
@@ -131,7 +146,42 @@ public class Courses{
                 ", c_lab_num ='" + labNum + '\'' +
                 ", c_lab_day ='" + labDay + '\'' +
                 ", c_lab_start ='" + labStart + '\'' +
-                ", c_lab_nend ='" + labEnd +
+                ", c_lab_end ='" + labEnd +
                 '}';
     }
+
+    public Courses(Parcel in){
+
+        this.courseName = in.readString();
+        this.courseNum = in.readInt();
+        this.day1 = in.readString();
+        this.day2 = in.readString();
+        this.startTime = in.readInt();
+        this.endTime = in.readInt();
+        this.labNum = in.readInt();
+        this.labDay = in.readString();
+        this.labStart = in.readInt();
+        this.labEnd = in.readInt();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.courseName);
+        dest.writeInt(this.courseNum);
+        dest.writeString(this.day1);
+        dest.writeString(this.day2);
+        dest.writeInt(this.startTime);
+        dest.writeInt(this.endTime);
+        dest.writeInt(this.labNum);
+        dest.writeString(this.labDay);
+        dest.writeInt(this.labStart);
+        dest.writeInt(this.labEnd);
+    }
+
+
 }
