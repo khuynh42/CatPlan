@@ -26,6 +26,7 @@ public class AddCourseLab extends AppCompatActivity {
 
     public static List<Courses> courseLab = new ArrayList<Courses>();
     public static ArrayList<Courses> courseSelected = new ArrayList<Courses>();
+    public static ArrayList<Courses> temp = new ArrayList<Courses>();
     private Activity activity = this;
     private AddLabAdapter ad;
     SQLiteHandler db;
@@ -40,7 +41,7 @@ public class AddCourseLab extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         ArrayList<Courses> courseNum = bundle.getParcelableArrayList("COURSE_SELECTED");
         ListView listView = (ListView) findViewById(R.id.listView);
-        ArrayList<Courses> temp = new ArrayList<Courses>();
+
 
         Log.d("COURSENUM", "SIZE: " + courseNum.size());
         //increment through number of choices
@@ -49,8 +50,10 @@ public class AddCourseLab extends AppCompatActivity {
             //Hold the array list with the values query provies
            courseLab.add(courseNum.get(i));
 
-            Log.d("courseLab", "CHECK: " + courseNum.get(i).getCourseName());
         }
+
+
+
         ad = new AddLabAdapter(this, courseLab);
         listView.setAdapter(ad);
 

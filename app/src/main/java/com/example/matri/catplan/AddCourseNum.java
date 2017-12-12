@@ -28,6 +28,7 @@ import java.io.Serializable;
 public class AddCourseNum extends AppCompatActivity
 {
     public static List<Courses> courseNames = new ArrayList<Courses>();
+    public static List<Courses> courseLab= new ArrayList<Courses>();
     public static ArrayList<Courses> courseSelected = new ArrayList<Courses>();
     private Activity activity = this;
     private AddAdapter ad;
