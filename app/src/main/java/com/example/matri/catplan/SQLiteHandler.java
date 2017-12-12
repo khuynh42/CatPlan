@@ -118,8 +118,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         this.onCreate(db);
     }
 
+
     public void insertContact(User c)
     {
+        //followed a guide to insert user and search pass
+        //Used the guide to apply to rest of the SQLITE HANDLER
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         String query = "select * from contacts";
@@ -139,6 +142,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     public String searchPass(String uname)
     {
+        //followed a guide to insert user and search pass
+        //Used the guide to apply to rest of the SQLITE HANDLER
         db = this.getReadableDatabase();
         String query = "select uname, pass from "+ TABLE_NAME;
         Cursor cu = db.rawQuery(query, null);
@@ -162,6 +167,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     public void insertName(Courses c)
     {
+        //followed a guide to insert user and search pass
+        //Used the guide to apply to rest of the SQLITE HANDLER
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -182,7 +189,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     public List<String> getAllNames(){
         List<String> names = new ArrayList<String>();
-
+        //Get all names for the courses
 
         // Select AllQuery
         String selectQuery = "SELECT  DISTINCT c_name " +
@@ -221,6 +228,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     public ArrayList<Courses> getListNum(){
         ArrayList<Courses> theList = new ArrayList<>();
 
+        //Search te database for the course number depending on the course name selected
         SQLiteDatabase db = this.getWritableDatabase();
         String numQuery = "SELECT DISTINCT * " +
                             " FROM " + TABLE_COURSE+
@@ -229,6 +237,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
         Log.d("DB GET LIST NUM", "Iterating to " + courseName);
 
+        //add the courses selcted to an array list and send back to be displayed
         Cursor data = db.rawQuery(numQuery,null);
         while(data.moveToNext()){
 
@@ -253,7 +262,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     public ArrayList<Courses> insertSchedule(ArrayList<Courses> course)
     {
-
+    //Insert to a new table Schedule from array list passed
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         Log.d("INSERT SCHEDULE SIZE", "VALUES: " + course.size());
@@ -278,7 +287,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     public ArrayList<Courses> getSchedule(){
         ArrayList<Courses> theList = new ArrayList<>();
-
+    //obtain the schedule using a query from the table schedule
         SQLiteDatabase db = this.getWritableDatabase();
         String numQuery = "SELECT DISTINCT * " +
                 " FROM " + TABLE_SCHEDULE +
@@ -337,7 +346,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     public void insertCourseCSE()
     {
-
+    //Add courses to db so every CSE, ENGR, MATH
         Courses CSE5_2 = new Courses("CSE", 5, "M", "W", 1430, 1545, 2, "R", 800, 1100);
         insertName(CSE5_2);
 
@@ -977,6 +986,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
+        //insert looping through the size of arraylist passed through
         for (int i =0; i < course.size(); i++)
         {
             values.put(COURSE_ID, courseId);
@@ -1005,6 +1015,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
                 " WHERE c_id = " + "\"" + courseId + "\" "+
                 " ORDER BY c_num;";
 
+        //add the data from arraylist to theList to be displayed
         Cursor data = db.rawQuery(numQuery,null);
         while(data.moveToNext()){
 
@@ -1024,6 +1035,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         return theList;
     }
 
+    //Clear the schedule when done with scheduling
     public void clearSchedule() {
 
             db.delete(TABLE_SCHEDULE,null,null);

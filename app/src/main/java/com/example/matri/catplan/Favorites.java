@@ -103,6 +103,7 @@ public class Favorites extends AppCompatActivity
     private void returnSelected() {
 
         Intent data = new Intent(Favorites.this, MainMenu.class);
+        db.clearSchedule();
         startActivity(data);
         finish();
     }
