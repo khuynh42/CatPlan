@@ -15,6 +15,7 @@
         android:layout_marginTop="16dp"
         android:text="Courses"
         android:textAppearance="@android:style/TextAppearance.Material.Title"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -18,6 +18,7 @@
         android:ems="10"
         android:hint="Name for Favorite"
         android:inputType="textPersonName"
+        android:textColor="@color/colorPrimaryDark"
         tools:ignore="HardcodedText,LabelFor,ObsoleteLayoutParam,UnknownIdInLayout" />
 
     <Button
@@ -30,6 +31,7 @@
         android:layout_x="102dp"
         android:layout_y="457dp"
         android:text="Enter"
+        android:textColor="@color/colorPrimaryDark"
         tools:ignore="HardcodedText,ObsoleteLayoutParam" />
 
 </RelativeLayout>

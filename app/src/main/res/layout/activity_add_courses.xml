@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:padding="8dip"
         android:text="@string/courseName"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -34,5 +35,8 @@
         android:layout_height="30dp"
         android:layout_weight="0.06"
         android:text="NEXT"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp"
+        android:textStyle="bold"
         tools:ignore="HardcodedText" />
 </LinearLayout>
