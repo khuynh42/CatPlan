@@ -30,8 +30,11 @@
         <activity android:name=".AddCourseLab"></activity>
         <activity android:name=".ScheduleChoice"></activity>
         <activity android:name=".Scheduler"></activity>
-
         <activity android:name=".Catalog"></activity>
+        <activity android:name=".FavoriteSelection"></activity>
+        <activity android:name=".Favorites"></activity>
+        <activity android:name=".FavoriteId"></activity>
+
 
 
     </application>

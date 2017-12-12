@@ -23,7 +23,6 @@ public class LoginActivity extends Activity {
         final EditText et2 = (EditText) findViewById(R.id.password1);
         Button login = (Button) findViewById(R.id.register);
         Button signup = (Button) findViewById(R.id.signup);
-
         login.setOnClickListener(new OnClickListener() {
 
             @Override

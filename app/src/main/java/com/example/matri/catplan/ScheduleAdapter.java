@@ -19,6 +19,10 @@ public class ScheduleAdapter extends ArrayAdapter<Courses>{
 
     ScheduleAdapter(Context context, List<Courses> courses) {
         super(context, R.layout.activity_schedule, courses);
+        check = new ArrayList<Boolean>(courses.size());
+        for (int i = 0; i < courses.size(); i++) {
+            check.add(i, false);
+        }
 
     }
     @Override
@@ -31,9 +35,11 @@ public class ScheduleAdapter extends ArrayAdapter<Courses>{
         Courses c = getItem(position);
 
         TextView schedule = (TextView) row.findViewById(R.id.schedule);
+        CheckBox checkbox = (CheckBox) row.findViewById(R.id.selectedCheckbox);
 
-        schedule.setText(c.getCourseName() + " " + c.getCourseNum() + " LAB " + c.getLabNum() + " " + c.getLabDay()
-                + " " + c.getLabStart() + " - " + c.getLabEnd());
+        schedule.setText(c.getCourseName() + " " + c.getCourseNum() + " " + c.getDay1()  + c.getDay2()+ " "+
+                c.getStartTime()+ " - "+ c.getEndTime() +" \nLAB  0" + c.getLabNum() + " " + c.getLabDay()
+                + "   " + c.getLabStart() + " - " + c.getLabEnd());
         return row;
     }
 

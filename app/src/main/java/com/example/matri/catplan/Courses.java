@@ -21,7 +21,7 @@ public class Courses implements Parcelable{
     };
 
 
-    private int id;
+    private String id;
     private String courseName;
     private int courseNum;
     private String day1;
@@ -50,9 +50,24 @@ public class Courses implements Parcelable{
         this.labEnd = lab_end;
     }
 
+    public Courses(String id, String course_name, int course_num, String day1, String day2, int startTime,
+                   int endTime, int lab_num, String lab_day, int lab_start, int lab_end) {
+        this.id =id;
+        this.courseName = course_name;
+        this.courseNum = course_num;
+        this.day1 = day1;
+        this.day2 = day2;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.labNum = lab_num;
+        this.labDay = lab_day;
+        this.labStart = lab_start;
+        this.labEnd = lab_end;
+    }
 
 
-
+    public String getId(){return id;}
+    public void setId(String id){this.id = id;}
 
     public String getCourseName() {
         return courseName;

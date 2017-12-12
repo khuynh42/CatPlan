@@ -51,6 +51,9 @@ public class ScheduleChoice extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent i2 = new Intent(ScheduleChoice.this, AddCourses.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("COURSE_SELECTED", courseNum);
+                i2.putExtras(bundle);
                 startActivity(i2);
 
             }

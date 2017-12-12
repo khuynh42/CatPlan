@@ -11,13 +11,13 @@
         android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add to Favorites"
+        android:text="Back"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="HardcodedText" />
 
     <Button
-        android:id="@+id/btnNext2"
+        android:id="@+id/btnNext"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

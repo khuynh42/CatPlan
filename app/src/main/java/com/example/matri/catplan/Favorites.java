@@ -25,32 +25,37 @@ import java.io.Serializable;
  * Created by matri on 12/7/2017.
  */
 
-public class AddCourseNum extends AppCompatActivity
+public class Favorites extends AppCompatActivity
 {
-    public static List<Courses> courseNames = new ArrayList<Courses>();
+    public static List<Courses> favorites = new ArrayList<Courses>();
     public static ArrayList<Courses> courseSelected = new ArrayList<Courses>();
     private Activity activity = this;
-    private AddAdapter ad;
+    private FavoritesAdapter ad;
     SQLiteHandler db;
-    public String course_name;
+    public String course_id;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_coursenum);
+        setContentView(R.layout.activity_display_favorites);
 
         db = new SQLiteHandler(this);
 
-        course_name  = getIntent().getStringExtra("course_name");
-        db.setCourseName(course_name);
+        Bundle bundle = getIntent().getExtras();
+        ArrayList<Courses> schedule = bundle.getParcelableArrayList("SCHEDULE_SELECTED");
+        course_id = getIntent().getStringExtra("courseId");
 
+        db.setCourseId(course_id);
+        Log.d("GomenGomen", "courseId " + course_id);
+
+        db.insertFavorite(schedule);
         //CourseNames to get List of Course Numbers from handler
-        courseNames = db.getListNum();
+        favorites = db.getFavorite();
 
-        //Addapter to populate the list
-        ad = new AddAdapter(this, courseNames);
-        ListView listView = (ListView) findViewById(R.id.listScrollView);
+        //Adapter to populate the list
+        ad = new FavoritesAdapter(this, favorites);
+        ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(ad);
 
 
@@ -89,22 +94,17 @@ public class AddCourseNum extends AppCompatActivity
     }
 
     private void closeSelector(){
+
+        Intent data = new Intent(Favorites.this, FavoriteSelection.class);
+        db.clearSchedule();
+        startActivity(data);
         finish();
     }
 
     private void returnSelected() {
-        courseSelected.clear();
-        for (int i=0; i<courseNames.size(); i++) {
-            if (ad.check.get(i))
-                courseSelected.add(courseNames.get(i));
-          Log.d("SELECTION CHECKBOX", "You Selected: " + courseNames.get(i) );
-        }
-        Intent data = new Intent(AddCourseNum.this, AddCourseLab.class);
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList("COURSE_SELECTED", courseSelected);
-        data.putExtras(bundle);
 
-        setResult(RESULT_OK, data);
+        Intent data = new Intent(Favorites.this, MainMenu.class);
+        db.clearSchedule();
         startActivity(data);
         finish();
     }

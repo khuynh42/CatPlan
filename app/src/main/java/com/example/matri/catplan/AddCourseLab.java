@@ -99,7 +99,7 @@ public class AddCourseLab extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList("COURSE_SELECTED", courseSelected);
         data.putExtras(bundle);
-
+        courseLab.clear();
         setResult(RESULT_OK, data);
         startActivity(data);
         finish();

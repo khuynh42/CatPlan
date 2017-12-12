@@ -53,7 +53,7 @@ public class MainMenu extends AppCompatActivity{
         favorites.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i3 = new Intent(MainMenu.this, Favourites.class);
+                Intent i3 = new Intent(MainMenu.this, FavoriteSelection.class);
                 startActivity(i3);
             }
         });
