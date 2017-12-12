@@ -34,7 +34,7 @@
         <activity android:name=".FavoriteSelection"></activity>
         <activity android:name=".Favorites"></activity>
         <activity android:name=".FavoriteId"></activity>
-
+        <activity android:name=".FavoritesIDCheck"></activity>
 
 
     </application>

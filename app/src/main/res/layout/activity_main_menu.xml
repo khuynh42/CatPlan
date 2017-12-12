@@ -40,7 +40,7 @@
         android:layout_height="52dp"
         android:text="@string/favorites"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="16p"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

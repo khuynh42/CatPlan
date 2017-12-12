@@ -42,7 +42,7 @@ public class FavoriteSelection extends Activity implements
             @Override
             public void onClick(View view) {
 
-                Intent i2 = new Intent(FavoriteSelection.this, Favorites.class);
+                Intent i2 = new Intent(FavoriteSelection.this, FavoritesIDCheck.class);
                 i2.putExtra("courseId", course_id);
                 startActivity(i2);
             }

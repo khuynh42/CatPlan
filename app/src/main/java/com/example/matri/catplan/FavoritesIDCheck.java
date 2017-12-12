@@ -1,5 +1,7 @@
 package com.example.matri.catplan;
 
+
+
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -25,7 +27,7 @@ import java.io.Serializable;
  * Created by matri on 12/7/2017.
  */
 
-public class Favorites extends AppCompatActivity
+public class FavoritesIDCheck extends AppCompatActivity
 {
     public static List<Courses> favorites = new ArrayList<Courses>();
     public static ArrayList<Courses> courseSelected = new ArrayList<Courses>();
@@ -42,14 +44,12 @@ public class Favorites extends AppCompatActivity
 
         db = new SQLiteHandler(this);
 
-        Bundle bundle = getIntent().getExtras();
-        ArrayList<Courses> schedule = bundle.getParcelableArrayList("SCHEDULE_SELECTED");
         course_id = getIntent().getStringExtra("courseId");
 
         db.setCourseId(course_id);
         Log.d("GomenGomen", "courseId " + course_id);
 
-        db.insertFavorite(schedule);
+
         //CourseNames to get List of Course Numbers from handler
         favorites = db.getFavorite();
 
@@ -95,14 +95,14 @@ public class Favorites extends AppCompatActivity
 
     private void closeSelector(){
 
-        Intent data = new Intent(Favorites.this, FavoriteSelection.class);
+        Intent data = new Intent(FavoritesIDCheck.this, FavoriteSelection.class);
         startActivity(data);
         finish();
     }
 
     private void returnSelected() {
 
-        Intent data = new Intent(Favorites.this, MainMenu.class);
+        Intent data = new Intent(FavoritesIDCheck.this, MainMenu.class);
         startActivity(data);
         finish();
     }

@@ -991,11 +991,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             values.put(COURSE_LAB_START, course.get(i).getLabStart());
             values.put(COURSE_LAB_END, course.get(i).getLabEnd());
             db.insert("favorite", null, values);
-            Log.d("INSERT Favorite", "VALUES: " + courseId);
-            Log.d("INSERT Favorite", "VALUES: " + course.get(i).getCourseName() + course.get(i).getCourseNum() + course.get(i).getDay1());
+            Log.d("INSERT Favorite", "VALUES: " + courseId + course.get(i).getCourseName() + course.get(i).getCourseNum() + course.get(i).getDay1());
         }
-
-
         return course;
     }
 
