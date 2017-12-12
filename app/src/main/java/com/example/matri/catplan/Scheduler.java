@@ -35,7 +35,7 @@ public class Scheduler extends AppCompatActivity {
 
         db = new SQLiteHandler(this);
 
-
+        display.clear();
         Bundle bundle = getIntent().getExtras();
         ArrayList<Courses> schedule = bundle.getParcelableArrayList("COURSE_SELECTED");
         ListView listView = (ListView) findViewById(R.id.listView);
@@ -148,6 +148,11 @@ public class Scheduler extends AppCompatActivity {
                         display.add(schedule.get(j));
                     }
                 }
+                else
+                {
+                    display.add(schedule.get(i));
+                    display.add(schedule.get(j));
+                }
 
                 }
             }
@@ -204,9 +209,9 @@ public class Scheduler extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList("SCHEDULE_SELECTED", courseSelected);
         data.putExtras(bundle);
+        display.clear();
+        setResult(RESULT_OK, data);
         startActivity(data);
-
-
         finish();
     }
 
@@ -214,6 +219,8 @@ public class Scheduler extends AppCompatActivity {
 
         Intent data = new Intent(Scheduler.this, MainMenu.class);
         db.clearSchedule();
+        display.clear();
+        setResult(RESULT_OK, data);
         startActivity(data);
         finish();
     }

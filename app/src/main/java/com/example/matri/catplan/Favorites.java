@@ -42,6 +42,7 @@ public class Favorites extends AppCompatActivity
 
         db = new SQLiteHandler(this);
 
+        favorites.clear();
         Bundle bundle = getIntent().getExtras();
         ArrayList<Courses> schedule = bundle.getParcelableArrayList("SCHEDULE_SELECTED");
         course_id = getIntent().getStringExtra("courseId");
@@ -96,6 +97,7 @@ public class Favorites extends AppCompatActivity
     private void closeSelector(){
 
         Intent data = new Intent(Favorites.this, FavoriteSelection.class);
+        favorites.clear();
         startActivity(data);
         finish();
     }
@@ -104,6 +106,8 @@ public class Favorites extends AppCompatActivity
 
         Intent data = new Intent(Favorites.this, MainMenu.class);
         db.clearSchedule();
+        favorites.clear();
+        setResult(RESULT_OK, data);
         startActivity(data);
         finish();
     }
